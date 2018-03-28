@@ -24,16 +24,14 @@ public class InscriptionServlet extends HttpServlet {
     {
         String code, nom,prenom,datenaissance,mail,tel,statuts,password,type;
         RequestDispatcher rd;
-        code=requete.getParameter("codeu");
+    
         nom=requete.getParameter("nom");
         prenom=requete.getParameter("prenom");
-        datenaissance=requete.getParameter("datenaissance");
+        datenaissance=requete.getParameter("date");
         mail=requete.getParameter("mail");
         tel=requete.getParameter("tel");
-        statuts=requete.getParameter("statuts");
         password=requete.getParameter("password");
-        type=requete.getParameter("type");
-        utilisateur m=new utilisateur(code,nom,prenom,datenaissance,mail,tel,statuts,password,type);
+        utilisateur m=new utilisateur(-1,nom,prenom,datenaissance,mail,tel,"En attente",password,"client");
 
        
         bd b=new bd();

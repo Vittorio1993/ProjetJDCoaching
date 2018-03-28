@@ -10,7 +10,7 @@ package METIER;
  * @author zhanghuakai
  */
 public class utilisateur {
-    private String codeu;
+    private Integer codeu;
     private String nomu;
     private String prenomu;
     private String datenaissanceu;
@@ -20,7 +20,7 @@ public class utilisateur {
     private String password;
     private String type;
 
-    public utilisateur(String codeu, String nomu, String prenomu, String datenaissanceu, String emailu, String telu, String statuts, String password, String type) {
+    public utilisateur(Integer codeu, String nomu, String prenomu, String datenaissanceu, String emailu, String telu, String statuts, String password, String type) {
         this.codeu = codeu;
         this.nomu = nomu;
         this.prenomu = prenomu;
@@ -32,7 +32,7 @@ public class utilisateur {
         this.type = type;
     }
 
-    public String getCodeu() {
+    public Integer getCodeu() {
         return codeu;
     }
 
@@ -68,7 +68,7 @@ public class utilisateur {
         return type;
     }
 
-    public void setCodeu(String codeu) {
+    public void setCodeu(Integer codeu) {
         this.codeu = codeu;
     }
 
