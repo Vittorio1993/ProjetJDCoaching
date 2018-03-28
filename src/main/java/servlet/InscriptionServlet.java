@@ -1,7 +1,7 @@
 package servlet;
 
-import BD.bd;
-import METIER.utilisateur;
+import database.Bd;
+import model.Utilisateur;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 
@@ -33,10 +33,10 @@ public class InscriptionServlet extends HttpServlet {
         statuts=requete.getParameter("statuts");
         password=requete.getParameter("password");
         type=requete.getParameter("type");
-        utilisateur m=new utilisateur(code,nom,prenom,datenaissance,mail,tel,statuts,password,type);
+        Utilisateur m=new Utilisateur(code,nom,prenom,datenaissance,mail,tel,statuts,password,type);
 
        
-        bd b=new bd();
+        Bd b=new Bd();
         b.saisirUtilisateur(m);
         
         rd=requete.getRequestDispatcher("Confirmation.jsp");

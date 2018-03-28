@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package METIER;
+package model;
 
 /**
  *
  * @author zhanghuakai
  */
-public class utilisateur {
+public class Utilisateur {
     private String codeu;
     private String nomu;
     private String prenomu;
@@ -20,7 +20,7 @@ public class utilisateur {
     private String password;
     private String type;
 
-    public utilisateur(String codeu, String nomu, String prenomu, String datenaissanceu, String emailu, String telu, String statuts, String password, String type) {
+    public Utilisateur(String codeu, String nomu, String prenomu, String datenaissanceu, String emailu, String telu, String statuts, String password, String type) {
         this.codeu = codeu;
         this.nomu = nomu;
         this.prenomu = prenomu;
@@ -103,7 +103,5 @@ public class utilisateur {
     public void setType(String type) {
         this.type = type;
     }
-    
-    
-    
+
 }
