@@ -31,7 +31,7 @@ public class InscriptionServlet extends HttpServlet {
         mail=requete.getParameter("mail");
         tel=requete.getParameter("tel");
         password=requete.getParameter("password");
-        utilisateur m=new utilisateur(-1,nom,prenom,datenaissance,mail,tel,"En attente",password,"client");
+        utilisateur m=new utilisateur(nom,prenom,datenaissance,mail,tel,"En attente",password,"client");
 
        
         bd b=new bd();

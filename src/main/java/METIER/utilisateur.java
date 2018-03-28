@@ -20,8 +20,8 @@ public class utilisateur {
     private String password;
     private String type;
 
-    public utilisateur(Integer codeu, String nomu, String prenomu, String datenaissanceu, String emailu, String telu, String statuts, String password, String type) {
-        this.codeu = codeu;
+    public utilisateur(String nomu, String prenomu, String datenaissanceu, String emailu, String telu, String statuts, String password, String type) {
+        //this.codeu = codeu;
         this.nomu = nomu;
         this.prenomu = prenomu;
         this.datenaissanceu = datenaissanceu;
