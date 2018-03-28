@@ -55,7 +55,7 @@ public class bd {
             Logger.getLogger(bd.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {    
-            st.executeUpdate("insert into utilisateur(CODEU,NOMU,PRENOMU,DATEDENAISSANCEU,EMAILU,TELU,STATUTS,PASSWORD,TYPE) values('"+utili.getCodeu()+"','"
+            st.executeUpdate("insert into utilisateur(NOMU,PRENOMU,DATEDENAISSANCEU,EMAILU,TELU,STATUTS,PASSWORD,TYPE) values('"
                                         +utili.getNomu()+"','"+utili.getPrenomu()+"','"+utili.getDatenaissanceu()+"','"+
                                         utili.getEmailu()+"','"+utili.getTelu()+"','"+utili.getStatuts()+"','"+
                                         utili.getPassword()+"','"+utili.getType()+"')");
