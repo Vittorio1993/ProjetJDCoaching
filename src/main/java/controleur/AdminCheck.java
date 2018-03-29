@@ -62,7 +62,6 @@ public class AdminCheck extends HttpServlet {
             try {
                 //Test Connexion Admin
                 admin = Bd.getAdmin(mail, password);
-                System.out.println(admin);
                 if (admin) {
                     RequestDispatcher rd = request
                             .getRequestDispatcher("pageadmin.jsp");

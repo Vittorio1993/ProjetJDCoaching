@@ -83,7 +83,7 @@
 							<div class="col-md-7">
 								<h2>Veuillez paramétrer votre adresse mail</h2>                                                            
 								 <form method="post" action="ParametrageMail">
-                                                                    Email: <input type="text" name="mail" style="color:black;" value="<%=mail%>">
+                                                                    Email: <input type="email" name="mail" style="color:black;" value="<%=mail%>">
                                                                     <br>
                                                                     <br>
                                                                     <input class="btn btn-primary" type="submit" value="Changer">
