@@ -107,5 +107,5 @@ public class GestionClient extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Paramétrage Mail";
-    }  
+    }
 }
