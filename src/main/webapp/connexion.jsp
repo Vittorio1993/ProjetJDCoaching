@@ -65,11 +65,11 @@
             String alert = "";
             if(request.getAttribute("mail") != null) { 
                 mail = (String) request.getAttribute("mail");
+                session.setAttribute("mail", mail);
             }
 
             if(request.getAttribute("password") != null) { 
-                password = (String) request.getAttribute("password");
-                session.setAttribute("mail", mail);
+                password = (String) request.getAttribute("password");         
             }
 
             if(request.getAttribute("erreur") != null) { 

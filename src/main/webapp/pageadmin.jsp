@@ -77,7 +77,7 @@
 							<div class="col-md-7">
 								<h2>Vous êtes connecté en tant qu'admin</h2>                                                            
 								<span><a class="btn btn-primary" href="parametragemail.jsp">Paramétrage des mails</a></span>
-                                                                <span><a href="index.html">Retour menu prinicpal</a></span>
+                                                                <span><a href="pageadmin.jsp">Retour menu prinicpal</a></span>
 							</div>
 						</div>
 					</div>

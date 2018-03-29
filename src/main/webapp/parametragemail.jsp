@@ -85,9 +85,10 @@
 								 <form method="post" action="ParametrageMail">
                                                                     Email: <input type="text" name="mail" style="color:black;" value="<%=mail%>">
                                                                     <br>
+                                                                    <br>
                                                                     <input class="btn btn-primary" type="submit" value="Changer">
                                                                 </form>
-                                                                <span><a href="index.html">Retour menu prinicpal</a></span>
+                                                                <span><a href="pageadmin.jsp">Retour menu prinicpal</a></span>
 							</div>
 						</div>
 					</div>

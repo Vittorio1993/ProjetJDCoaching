@@ -36,7 +36,9 @@ public class ParametrageMail extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(true);
         String ancienmail = (String) session.getAttribute("mail");
+        System.out.println(ancienmail);
         String mail = request.getParameter("mail");
+        System.out.println(mail);
         boolean changementMail = false;
         boolean error = false;
 
