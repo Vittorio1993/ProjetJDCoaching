@@ -37,20 +37,17 @@ public class AdminCheck extends HttpServlet {
         String password = request.getParameter("password");
         boolean error = false;
         boolean admin = false;
-        
-        if (mail == null || mail.length() == 0) {
-            request.setAttribute("errorMail", true);
-            error = true;
-        }
 
-        if (password == null || password.length() == 0) {
-            request.setAttribute("errorPassword", true);
+        if (mail == null || mail.length() == 0|| password == null || password.length() == 0) {
             error = true;
         }
 
         if (error) {
             request.setAttribute("mail", mail);
             request.setAttribute("password", password);
+            RequestDispatcher rd = request
+                        .getRequestDispatcher("connexion.jsp");
+            rd.forward(request, response);
         } else {
             try {
                 //Test Connexion Admin
@@ -63,7 +60,7 @@ public class AdminCheck extends HttpServlet {
                 }
             } catch (Exception e) {
                 RequestDispatcher rd = request
-                        .getRequestDispatcher("index.html");
+                        .getRequestDispatcher("connexion.jsp");
                 rd.forward(request, response);
             }
         }
