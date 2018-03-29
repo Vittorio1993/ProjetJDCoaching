@@ -159,8 +159,7 @@ public class Bd {
      * @return booléen
      * @throws Exception Exception
      */
-    public static boolean changementMailAdmin(final String mailadmin,
-            final String newmailadmin)
+    public static boolean changementMailAdmin(final String newmailadmin)
             throws Exception {
 
         if (Bd.cx == null) {
@@ -186,9 +185,7 @@ public class Bd {
         String sqlupdate = "UPDATE UTILISATEUR SET EMAILU = '"
                             + newmailadmin
                             + "' "
-                            + "WHERE EMAILU = '"
-                            +  mailadmin
-                            + "' ";
+                            + "WHERE TYPE='admin'";
 
         try {
             Statement st = cx.createStatement();

@@ -35,10 +35,7 @@ public class ParametrageMail extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(true);
-        String ancienmail = (String) session.getAttribute("mail");
-        System.out.println(ancienmail);
         String mail = request.getParameter("mail");
-        System.out.println(mail);
         boolean changementMail = false;
         boolean error = false;
 
@@ -47,7 +44,7 @@ public class ParametrageMail extends HttpServlet {
             error = true;
         }
 
-        //Renvoi page de connexion
+        //Renvoi page de paramétrage
         if (error) {
             request.setAttribute("mail", mail);
             if ("".equals(mail)) {
@@ -60,10 +57,12 @@ public class ParametrageMail extends HttpServlet {
         } else {
             try {
                 //Test Changement Mail Admin
-                changementMail = Bd.getAdmin(ancienmail, mail);
+                changementMail = Bd.changementMailAdmin(mail);
                 if (changementMail) {
+                    request.setAttribute("changementMail",
+                            "<p>Le changement d'adresse mail a été effectué.</p>");
                     RequestDispatcher rd = request
-                            .getRequestDispatcher("parametragemaildone.jsp");
+                            .getRequestDispatcher("pageadmin.jsp");
                     rd.forward(request, response);
                 }
             } catch (Exception e) {
@@ -112,6 +111,6 @@ public class ParametrageMail extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Vérification Admin";
+        return "Paramétrage Mail";
     }
 }
