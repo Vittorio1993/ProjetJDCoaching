@@ -56,6 +56,12 @@
             <title>Page d'accueil</title>
         </head>
         <body>
+            <%  
+            String changementmail = "";
+            if(request.getAttribute("changementMail") != null) { 
+                changementmail = (String) request.getAttribute("changementMail");
+            }
+            %>
             <div id="fh5co-wrapper">
 		<div id="fh5co-page">
 		<div id="fh5co-header">
@@ -75,7 +81,9 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-md-7">
-								<h2>Vous êtes connecté en tant qu'admin</h2>                                                            
+								<h2>Vous êtes connecté en tant qu'administrateur</h2>
+                                                                <br>
+                                                                <span><a><%=changementmail%></a></span>
 								<span><a class="btn btn-primary" href="parametragemail.jsp">Paramétrage des mails</a></span>
                                                                 <span><a href="pageadmin.jsp">Retour menu prinicpal</a></span>
 							</div>
