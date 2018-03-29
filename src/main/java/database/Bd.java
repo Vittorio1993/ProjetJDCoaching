@@ -35,7 +35,7 @@ public class Bd {
 
         //Chargement du driver JDBC
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
             throw new Exception("Problème de chargement du driver - "
                     + ex.getMessage());
