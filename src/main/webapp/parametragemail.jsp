@@ -56,6 +56,12 @@
             <title>Page d'accueil</title>
         </head>
         <body>
+            <%    
+            String mail = "";
+            if(session.getAttribute("mail") != null) { 
+                mail = (String) session.getAttribute("mail");
+            }
+            %>
             <div id="fh5co-wrapper">
 		<div id="fh5co-page">
 		<div id="fh5co-header">
@@ -75,8 +81,12 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-md-7">
-								<h2>Vous êtes connecté en tant qu'admin</h2>                                                            
-								<span><a class="btn btn-primary" href="parametragemail.jsp">Paramétrage des mails</a></span>
+								<h2>Veuillez paramétrer votre adresse mail</h2>                                                            
+								 <form method="post" action="ParametrageMail">
+                                                                    Email: <input type="text" name="mail" style="color:black;" value="<%=mail%>">
+                                                                    <br>
+                                                                    <input class="btn btn-primary" type="submit" value="Changer">
+                                                                </form>
                                                                 <span><a href="index.html">Retour menu prinicpal</a></span>
 							</div>
 						</div>

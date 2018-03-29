@@ -114,7 +114,7 @@ public class Bd {
         try {
             cx = DriverManager.getConnection(url);
         } catch (SQLException ex) {
-            System.out.println("Erreur ouverture connextion" + ex.getMessage());
+            System.out.println("Erreur ouverture connexion" + ex.getMessage());
         }
         try {
             statement = cx.createStatement();
@@ -151,8 +151,66 @@ public class Bd {
                 }
         return requestOK;
     }
+
+    /**
+     * Changement de mail Admin.
+     * @param mailadmin ancien mail
+     * @param newmailadmin new mail
+     * @return booléen
+     * @throws Exception Exception
+     */
+    public static boolean changementMailAdmin(final String mailadmin,
+            final String newmailadmin)
+            throws Exception {
+
+        if (Bd.cx == null) {
+            Bd.connexion();
+        }
+        // Statement pour effectuer la requête
+        Statement statement;
+         //Ouverture de la connexion
+        try {
+            cx = DriverManager.getConnection(url);
+        } catch (SQLException ex) {
+            System.out.println("Erreur ouverture connexion" + ex.getMessage());
+        }
+        try {
+            statement = cx.createStatement();
+        } catch (SQLException error) {
+            throw new Exception("Problème avec création du statement : "
+                    + error.getMessage());
+        }
+        boolean requestOK = false;
+
+        /* Requête */
+        String sqlupdate = "UPDATE UTILISATEUR SET EMAILU = '"
+                            + newmailadmin
+                            + "' "
+                            + "WHERE EMAILU = '"
+                            +  mailadmin
+                            + "' ";
+
+        try {
+            Statement st = cx.createStatement();
+            /* Execution de la requête */
+            try {
+                st.executeUpdate(sqlupdate);
+                requestOK = true;
+                st.close();
+                cx.close();
+            } catch (SQLException ex) {
+                    System.out.println("Erreur execution requête "
+                            + ex.getMessage());
+                }
+        } catch (SQLException ex) {
+                System.out.println("Erreur de SQL statement "
+                        + ex.getMessage());
+        }
+        return requestOK;
+    }
     // Request test
-    /*public static void main(String[] args) throws ClassNotFoundException, SQLException, Exception {
+    /*public static void main(String[] args)
+        throws ClassNotFoundException, SQLException, Exception {
 
         Bd unebd = new Bd();
         boolean admin = unebd.getAdmin("admin@admin.com", "123");
