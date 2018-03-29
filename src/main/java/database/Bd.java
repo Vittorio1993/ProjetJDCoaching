@@ -96,13 +96,13 @@ public class Bd {
         }
     }
 
-     /**
-      * Retour d'un admin.
-      * @param mail mail du user
-      * @param pwd password du user
-      * @return boolean
-      * @throws Exception Exception
-      */
+    /**
+     * Retour d'un admin.
+     * @param mail mail du user
+     * @param pwd password du user
+     * @return boolean
+     * @throws Exception Exception
+     */
     public static boolean getAdmin(final String mail, final String pwd)
             throws Exception {
 
