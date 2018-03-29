@@ -57,6 +57,10 @@ public class Utilisateur {
     private String type;
 
     /**
+     * Objectif de l'Utilisateur.
+     */
+    private String objectif;
+    /**
      * Class Constructor.
      * @param code code utilisateur
      * @param nom nom utilisateur
@@ -67,11 +71,12 @@ public class Utilisateur {
      * @param statusu status utilisateur
      * @param passwordu mot de passe utilisateur
      * @param typeu type utilisateur
+     * @param objectifu objectif utilisateur
      */
     public Utilisateur(final String code, final String nom,
             final String prenom, final String datenaissance,
                 final String email, final String tel, final String statusu,
-                final String passwordu, final String typeu) {
+                final String passwordu, final String typeu, final String objectifu) {
         this.codeu = code;
         this.nomu = nom;
         this.prenomu = prenom;
@@ -81,6 +86,7 @@ public class Utilisateur {
         this.status = statusu;
         this.password = passwordu;
         this.type = typeu;
+        this.objectif = objectifu;
     }
 
     /**
@@ -156,6 +162,14 @@ public class Utilisateur {
     }
 
     /**
+     * Getter Objectif Utilisateur.
+     * @return objectif
+     */
+    public final String getObjectif() {
+        return objectif;
+    }
+
+    /**
      * Setter Code Utilisateur.
      * @param code code utilisateur
      */
@@ -227,4 +241,11 @@ public class Utilisateur {
         this.type = typeu;
     }
 
+    /**
+     * Setter Type Utilisateur.
+     * @param objectifu objectif
+     */
+    public final void setObjectif(final String objectifu) {
+        this.objectif = objectifu;
+    }
 }

@@ -88,7 +88,7 @@
                                                                     <br>
                                                                     <input class="btn btn-primary" type="submit" value="Changer">
                                                                 </form>
-                                                                <span><a href="pageadmin.jsp">Retour menu prinicpal</a></span>
+                                                                <span><a href="pageadmin.jsp">Retour à la page d'accueil</a></span>
 							</div>
 						</div>
 					</div>

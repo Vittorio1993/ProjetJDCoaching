@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -51,10 +52,10 @@ public class Bd {
 
     }
 
-
     /**
      * Saisir un utilisateur.
      * @param u utilisateur
+     * @throws Exception Exception
      */
      public final void saisirUtilisateur(final Utilisateur u) throws Exception {
 
@@ -154,7 +155,6 @@ public class Bd {
 
     /**
      * Changement de mail Admin.
-     * @param mailadmin ancien mail
      * @param newmailadmin new mail
      * @return booléen
      * @throws Exception Exception
@@ -204,6 +204,71 @@ public class Bd {
                         + ex.getMessage());
         }
         return requestOK;
+    }
+
+    /**
+     * Retour des utilisateurs de la BD.
+     * @return ArrayList d'utilisateurs
+     * @throws Exception Exception
+     */
+    public static  ArrayList<Utilisateur> getUtilisateurs()
+            throws Exception {
+
+        // ArrayList pour stocker les utilisateurs
+        ArrayList<Utilisateur> users = new ArrayList();
+        if (Bd.cx == null) {
+            Bd.connexion();
+        }
+        // Statement pour effectuer la requête
+        Statement statement;
+         //Ouverture de la connexion
+        try {
+            cx = DriverManager.getConnection(url);
+        } catch (SQLException ex) {
+            System.out.println("Erreur ouverture connexion" + ex.getMessage());
+        }
+        try {
+            statement = cx.createStatement();
+        } catch (SQLException error) {
+            throw new Exception("Problème avec création du statement : "
+                    + error.getMessage());
+        }
+
+        /* Requête ajout des abonnés */
+        String sqlabonne = "Select CODEU, NOMU, PRENOMU, DATENAISSANCEU, EMAILU, TELU, STATUTS, PASSWORD, TYPE, OBJECTIF FROM UTILISATEUR";
+
+        try {
+            Statement st = cx.createStatement();
+            /* Execution de la requête */
+            try {
+                ResultSet rs = st.executeQuery(sqlabonne);
+                /* Adding messages to the ArrayList */
+                while (rs.next()) {
+
+                        users.add(new Utilisateur(
+                                rs.getString("CODEU"),
+                                rs.getString("NOMU"),
+                                rs.getString("PRENOMU"),
+                            rs.getString("DATENAISSANCEU"),
+                                rs.getString("EMAILU"),
+                            rs.getString("TELU"),
+                                rs.getString("STATUTS"),
+                                rs.getString("PASSWORD"),
+                                rs.getString("TYPE"),
+                                rs.getString("OBJECTIF")));
+                }
+                rs.close();
+                st.close();
+                cx.close();
+            } catch (SQLException ex) {
+                    System.out.println("Erreur execution requête "
+                            + ex.getMessage());
+                }
+        } catch (SQLException ex) {
+                System.out.println("Erreur de SQL statement "
+                        + ex.getMessage());
+        }
+        return users;
     }
     // Request test
     /*public static void main(String[] args)
