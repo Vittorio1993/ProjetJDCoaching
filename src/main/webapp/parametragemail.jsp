@@ -1,12 +1,11 @@
 <%-- 
-    Document   : connexion
-    Created on : 29 mars 2018, 14:10:46
+    Document   : parametragemail
+    Created on : 29 mars 2018, 15:33:34
     Author     : RHAW
 --%>
 
 <%@page contentType="text/html" pageEncoding="windows-1252"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
@@ -54,28 +53,9 @@
             <!--[if lt IE 9]>
             <script src="js/respond.min.js"></script>
             <![endif]-->
-            <title>Connexion</title>
-            
+            <title>Page d'accueil</title>
         </head>
         <body>
-            <% 
-            session.invalidate();    
-            String mail = "";
-            String password = "";
-            String alert = "";
-            if(request.getAttribute("mail") != null) { 
-                mail = (String) request.getAttribute("mail");
-            }
-
-            if(request.getAttribute("password") != null) { 
-                password = (String) request.getAttribute("password");
-                session.setAttribute("mail", mail);
-            }
-
-            if(request.getAttribute("erreur") != null) { 
-                alert = (String) request.getAttribute("erreur");
-            }
-            %>
             <div id="fh5co-wrapper">
 		<div id="fh5co-page">
 		<div id="fh5co-header">
@@ -95,16 +75,9 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-md-7">
-								<h2>Veuillez vous connecter</h2>
-                                                                <%=alert%>
-                                                                <form method="post" action="AdminCheck">
-                                                                    Email: <input type="text" name="mail" style="color:black;" value="<%=mail%>">
-                                                                    <br>
-                                                                    Mot de passe: <input type="password" name="password" style="color:black;" value="<%=password%>">
-                                                                    <br>
-                                                                    <br>
-                                                                    <input class="btn btn-primary" type="submit" value="Connexion">
-                                                                </form>
+								<h2>Vous êtes connecté en tant qu'admin</h2>                                                            
+								<span><a class="btn btn-primary" href="parametragemail.jsp">Paramétrage des mails</a></span>
+                                                                <span><a href="index.html">Retour menu prinicpal</a></span>
 							</div>
 						</div>
 					</div>
@@ -125,7 +98,7 @@
 	<script src="js/superfish.js"></script>
 
 	<!-- Main JS (Do not remove) -->
-	<script src="js/main.js"></script>                                                            
+	<script src="js/main.js"></script>  
         </body>
     </html>
 </f:view>

@@ -38,13 +38,23 @@ public class AdminCheck extends HttpServlet {
         boolean error = false;
         boolean admin = false;
 
-        if (mail == null || mail.length() == 0|| password == null || password.length() == 0) {
+        //Test sur les champs de mail et de password
+        if (mail == null || mail.length() == 0
+                || password == null || password.length() == 0) {
             error = true;
         }
 
+        //Renvoi page de connexion
         if (error) {
             request.setAttribute("mail", mail);
             request.setAttribute("password", password);
+            if ("".equals(mail)) {
+            request.setAttribute("erreur",
+                    "<p class=\"alert alert-danger\">Le mail doit être renseigné.</p>");
+            } else if ("".equals(password)) {
+            request.setAttribute("erreur",
+                    "<p class=\"alert alert-danger\">Le mot de passe doit être renseigné.</p>");
+        }
             RequestDispatcher rd = request
                         .getRequestDispatcher("connexion.jsp");
             rd.forward(request, response);
@@ -105,6 +115,6 @@ public class AdminCheck extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Vérification Admin";
     }
 }
