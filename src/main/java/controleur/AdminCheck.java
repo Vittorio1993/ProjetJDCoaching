@@ -16,9 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Alexandre
+ * @author RHAW
  */
-@WebServlet(name = "Connexion", urlPatterns = {"/Connecter"})
+@WebServlet(name = "AdminCheck", urlPatterns = {"/AdminCheck"})
 public class AdminCheck extends HttpServlet {
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,41 +32,44 @@ public class AdminCheck extends HttpServlet {
     protected void processRequest(final HttpServletRequest request,
             final HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher requestDError = request.
-                getRequestDispatcher("");
         request.setCharacterEncoding("UTF-8");
-        String mail = request.getParameter("mail").trim();
-        String password = request.getParameter("password").trim();
+        String mail = request.getParameter("mail");
+        String password = request.getParameter("password");
         boolean error = false;
-
+        boolean admin = false;
+        
         if (mail == null || mail.length() == 0) {
-            request.setAttribute("errorPseudo", true);
+            request.setAttribute("errorMail", true);
             error = true;
         }
 
         if (password == null || password.length() == 0) {
-            request.setAttribute("errorTextMessage", true);
+            request.setAttribute("errorPassword", true);
             error = true;
         }
 
         if (error) {
             request.setAttribute("mail", mail);
             request.setAttribute("password", password);
-            requestDError.forward(request, response);
         } else {
             try {
-                boolean admin = Bd.getUtilisateur(mail, password);
-                response.sendRedirect("/livreor/messages");
+                //Test Connexion Admin
+                admin = Bd.getAdmin(mail, password);
+                System.out.println(admin);
+                if (admin) {
+                    RequestDispatcher rd = request
+                            .getRequestDispatcher("pageadmin.jsp");
+                    rd.forward(request, response);
+                }
             } catch (Exception e) {
-                request.setAttribute("mail", mail);
-                request.setAttribute("password", password);
-                request.setAttribute("error", e.getMessage());
-                requestDError.forward(request, response);
+                RequestDispatcher rd = request
+                        .getRequestDispatcher("index.html");
+                rd.forward(request, response);
             }
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. 
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods.
     // Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -77,8 +80,8 @@ public class AdminCheck extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request,
-            HttpServletResponse response)
+    protected void doGet(final HttpServletRequest request,
+            final HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -92,8 +95,8 @@ public class AdminCheck extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request,
-            HttpServletResponse response)
+    protected void doPost(final HttpServletRequest request,
+            final HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }

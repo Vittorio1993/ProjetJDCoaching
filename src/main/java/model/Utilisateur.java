@@ -7,101 +7,224 @@ package model;
 
 /**
  *
- * @author zhanghuakai
+ * @author RHAW
  */
 public class Utilisateur {
+
+    /**
+     * Code de l'Uilisateur.
+     */
     private String codeu;
+
+    /**
+     * Nom de l'Utilisateur.
+     */
     private String nomu;
+
+    /**
+     * Prénom de l'Utilisateur.
+     */
     private String prenomu;
+
+    /**
+     * Date de naissance de l'Utilisateur.
+     */
     private String datenaissanceu;
+
+    /**
+     * Adresse mail de l'Utilisateur.
+     */
     private String emailu;
+
+    /**
+     * Numéro de téléphone de l'Utilisateur.
+     */
     private String telu;
-    private String statuts;
+
+    /**
+     * Status de l'Utilisateur.
+     */
+    private String status;
+
+    /**
+     * Mot de passe de l'Utilisateur.
+     */
     private String password;
+
+    /**
+     * Type de l'Utilisateur.
+     */
     private String type;
 
-    public Utilisateur(String codeu, String nomu, String prenomu, String datenaissanceu, String emailu, String telu, String statuts, String password, String type) {
-        this.codeu = codeu;
-        this.nomu = nomu;
-        this.prenomu = prenomu;
-        this.datenaissanceu = datenaissanceu;
-        this.emailu = emailu;
-        this.telu = telu;
-        this.statuts = statuts;
-        this.password = password;
-        this.type = type;
+    /**
+     * Class Constructor.
+     * @param code code utilisateur
+     * @param nom nom utilisateur
+     * @param prenom prénom utilisateur
+     * @param datenaissance date de naissance utilisateur
+     * @param email mail utilisateur
+     * @param tel numéro de téléphone utilisateur
+     * @param statusu status utilisateur
+     * @param passwordu mot de passe utilisateur
+     * @param typeu type utilisateur
+     */
+    public Utilisateur(final String code, final String nom,
+            final String prenom, final String datenaissance,
+                final String email, final String tel, final String statusu,
+                final String passwordu, final String typeu) {
+        this.codeu = code;
+        this.nomu = nom;
+        this.prenomu = prenom;
+        this.datenaissanceu = datenaissance;
+        this.emailu = email;
+        this.telu = tel;
+        this.status = statusu;
+        this.password = passwordu;
+        this.type = typeu;
     }
 
-    public String getCodeu() {
+    /**
+     * Getter Code Utilisateur.
+     * @return codeu
+     */
+    public final String getCodeu() {
         return codeu;
     }
 
-    public String getNomu() {
+    /**
+     * Getter Nom Utilisateur.
+     * @return nomu
+     */
+    public final String getNomu() {
         return nomu;
     }
 
-    public String getPrenomu() {
+    /**
+     * Getter Prenom Utilisateur.
+     * @return prenomu
+     */
+    public final String getPrenomu() {
         return prenomu;
     }
 
-    public String getDatenaissanceu() {
+    /**
+     * Getter Date naissance Utilisateur.
+     * @return datenaissanceu
+     */
+    public final String getDatenaissanceu() {
         return datenaissanceu;
     }
 
-    public String getEmailu() {
+    /**
+     * Getter Email Utilisateur.
+     * @return emailu
+     */
+    public final String getEmailu() {
         return emailu;
     }
 
-    public String getTelu() {
+    /**
+     * Getter Tel Utilisateur.
+     * @return telu
+     */
+    public final String getTelu() {
         return telu;
     }
 
-    public String getStatuts() {
-        return statuts;
+    /**
+     * Getter Status Utilisateur.
+     * @return status
+     */
+    public final String getStatus() {
+        return status;
     }
 
-    public String getPassword() {
+    /**
+     * Getter Password Utilisateur.
+     * @return password
+     */
+    public final String getPassword() {
         return password;
     }
 
-    public String getType() {
+    /**
+     * Getter Type Utilisateur.
+     * @return type
+     */
+    public final String getType() {
         return type;
     }
 
-    public void setCodeu(String codeu) {
-        this.codeu = codeu;
+    /**
+     * Setter Code Utilisateur.
+     * @param code code utilisateur
+     */
+    public final void setCodeu(final String code) {
+        this.codeu = code;
     }
 
-    public void setNomu(String nomu) {
-        this.nomu = nomu;
+    /**
+     * Setter Nom Utilisateur.
+     * @param nom nom
+     */
+    public final void setNomu(final String nom) {
+        this.nomu = nom;
     }
 
-    public void setPrenomu(String prenomu) {
-        this.prenomu = prenomu;
+    /**
+     * Setter Prenom Utilisateur.
+     * @param prenom prénom
+     */
+    public final void setPrenomu(final String prenom) {
+        this.prenomu = prenom;
     }
 
-    public void setDatenaissanceu(String datenaissanceu) {
-        this.datenaissanceu = datenaissanceu;
+    /**
+     * Setter Date Naissance Utilisateur.
+     * @param datenaissance date de naissance
+     */
+    public final void setDatenaissanceu(final String datenaissance) {
+        this.datenaissanceu = datenaissance;
     }
 
-    public void setEmailu(String emailu) {
-        this.emailu = emailu;
+    /**
+     * Setter Mail Utilisateur.
+     * @param email mail
+     */
+    public final void setEmailu(final String email) {
+        this.emailu = email;
     }
 
-    public void setTelu(String telu) {
-        this.telu = telu;
+    /**
+     * Setter Tel Utilisateur.
+     * @param tel téléphone
+     */
+    public final void setTelu(final String tel) {
+        this.telu = tel;
     }
 
-    public void setStatuts(String statuts) {
-        this.statuts = statuts;
+    /**
+     * Setter Status Utilisateur.
+     * @param statusu status
+     */
+    public final void setStatus(final String statusu) {
+        this.status = statusu;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    /**
+     * Setter Password Utilisateur.
+     * @param passwordu password
+     */
+    public final void setPassword(final String passwordu) {
+        this.password = passwordu;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    /**
+     * Setter Type Utilisateur.
+     * @param typeu type
+     */
+    public final void setType(final String typeu) {
+        this.type = typeu;
     }
 
 }

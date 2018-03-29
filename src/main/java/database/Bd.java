@@ -6,11 +6,9 @@
 package database;
 
 import model.Utilisateur;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
@@ -18,48 +16,80 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author zhanghuakai
+ * @author RHAW
  */
 public class Bd {
+    /**
+     * Connexion.
+     */
     private static Connection cx;
-    
-    //données de connexion
-    private static String url="jdbc:mysql://np903346ltnyr11z:dsbumc5602c2y8ky@m60mxazb4g6sb4nn.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/fupu8i1nlz5lkcc8";
-    private String login="21514547";
-    private String password="Q048F5";
- 
-    
-    //constucteur
 
-    public Bd() {
-        //chargement du pilote pour la BD
-        try{
+    //données de connexion
+    private final static String url="jdbc:mysql://np903346ltnyr11z:dsbumc5602c2y8ky@m60mxazb4g6sb4nn.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/fupu8i1nlz5lkcc8";
+
+    /**
+     * BD Connexion.
+     * @throws Exception Exception
+     */
+    private static void connexion() throws Exception {
+
+        //Chargement du driver JDBC
+        try {
             Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException ex) {
+            throw new Exception("Problème de chargement du driver - "
+                    + ex.getMessage());
         }
-        catch(ClassNotFoundException ex){
-            System.out.println("not good"+ex.getMessage());
+
+        //Création de la connexion
+        try {
+        Bd.cx = DriverManager.getConnection(url);
+        } catch (SQLException ex) {
+            throw new Exception("Problème de connexion à la BD - "
+                    + ex.getMessage());
         }
-        //ouverture de la connexion
-        try{
-            this.cx=DriverManager.getConnection(url, login, password);
-        }
-        catch(SQLException ex){
-            System.out.println("Erreur ouverture connextion"+ex.getMessage());
-        }
+
     }
-    
-     public void saisirUtilisateur(Utilisateur utili){
-        Statement st=null;
+
+
+    /**
+     * Saisir un utilisateur.
+     * @param u utilisateur
+     */
+     public final void saisirUtilisateur(final Utilisateur u) throws Exception {
+
+        if (Bd.cx == null) {
+            Bd.connexion();
+        }
+         /**
+          * Statement.
+          */
+        Statement st = null;
         try {
             st = cx.createStatement();
         } catch (SQLException ex) {
             Logger.getLogger(Bd.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            st.executeUpdate("insert into utilisateur(CODEU,NOMU,PRENOMU,DATEDENAISSANCEU,EMAILU,TELU,STATUTS,PASSWORD,TYPE) values('"+utili.getCodeu()+"','"
-                                        +utili.getNomu()+"','"+utili.getPrenomu()+"','"+utili.getDatenaissanceu()+"','"+
-                                        utili.getEmailu()+"','"+utili.getTelu()+"','"+utili.getStatuts()+"','"+
-                                        utili.getPassword()+"','"+utili.getType()+"')");
+            st.executeUpdate("insert into utilisateur(CODEU,NOMU,PRENOMU,DATEDENAISSANCEU,EMAILU,TELU,STATUTS,PASSWORD,TYPE) values('"
+                    + u.getCodeu()
+                    + "','"
+                    + u.getNomu()
+                    + "','"
+                    + u.getPrenomu()
+                    + "','"
+                    + u.getDatenaissanceu()
+                    + "','"
+                    + u.getEmailu()
+                    + "','"
+                    + u.getTelu()
+                    + "','"
+                    + u.getStatus()
+                    + "','"
+                    + u.getPassword()
+                    + "','"
+                    + u.getType()
+                    + "')");
         } catch (SQLException ex) {
             Logger.getLogger(Bd.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -72,34 +102,60 @@ public class Bd {
       * @return boolean
       * @throws Exception Exception
       */
-    public static boolean getUtilisateur(final String mail, final String pwd)
+    public static boolean getAdmin(final String mail, final String pwd)
             throws Exception {
+
+        if (Bd.cx == null) {
+            Bd.connexion();
+        }
         // Statement to handle query
         Statement statement;
-
+         //Ouverture de la connexion
+        try {
+            cx = DriverManager.getConnection(url);
+        } catch (SQLException ex) {
+            System.out.println("Erreur ouverture connextion" + ex.getMessage());
+        }
         try {
             statement = cx.createStatement();
         } catch (SQLException error) {
-            throw new Exception("Problem with the statement creation : "
+            throw new Exception("Problème avec création du statement : "
                     + error.getMessage());
         }
-        boolean requestOK;
-        String query = "SELECT * "
-                + "from UTILISATEUR "
-                + "where EMAILU=? "
-                + "and PASSWORD=? "
-                + "and TYPE='admin'"
+        boolean requestOK = false;
+        String query = "SELECT COUNT(*) as rowcount "
+                + "FROM UTILISATEUR "
+                + "WHERE EMAILU='"
+                + mail
+                + "'"
+                + "AND PASSWORD='"
+                + pwd
+                + "'"
+                + "AND TYPE='admin'"
                 + ";";
 
-        try {
-            PreparedStatement pstmt = cx.prepareStatement(query);
-            pstmt.setString(1, mail);
-            pstmt.setString(2, pwd);
-            requestOK = pstmt.execute();
-        } catch (SQLException error) {
-            throw new Exception("Problem when insert to the table : "
-                    + error.getMessage());
-        }
+        /* Execution de la requête */
+            try {
+                    ResultSet rs = statement.executeQuery(query);
+                    while (rs.next()) {
+                        if (rs.getInt("rowcount") == 1) {
+                            requestOK = true;
+                        }
+                    }
+                    rs.close();
+                    statement.close();
+                    cx.close();
+                } catch (SQLException ex) {
+                    System.out.println("Problème avec récupération de la requête : "
+                            + ex.getMessage());
+                }
         return requestOK;
-     }
+    }
+    // Request test
+    /*public static void main(String[] args) throws ClassNotFoundException, SQLException, Exception {
+
+        Bd unebd = new Bd();
+        boolean admin = unebd.getAdmin("admin@admin.com", "123");
+        System.out.println(admin);
+    }*/
 }
