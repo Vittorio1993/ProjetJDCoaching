@@ -78,7 +78,7 @@
 			<header id="fh5co-header-section">
 				<div class="container">
 					<div class="nav-header">
-						<h1 id="fh5co-logo"><a href="connexion.jsp">JD<span>Connexion</span></a></h1>
+						<h1 id="fh5co-logo"><a href="pageadmin.jsp">JD<span>Coaching</span></a></h1>
 					</div>
 				</div>
 			</header>		
