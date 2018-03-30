@@ -90,16 +90,16 @@
 				<div class="desc animate-box">
 					<div class="container">
 						<div class="row">
-							<div class="col-md-7">
+							<div>
                                                                 <div class="table-responsive">
                                                                     <table border='1'>
                                                                     <%
                                                                         out.println("<tr><td>Nom</td><td>Prénom</td><td>Date de naissance</td><td>Adresse e-mail</td><td>Numéro de téléphone<td>Objectif</td></td></tr>");
                                                                         for(Utilisateur u : prospects) {
                                                                             out.println("<tr><td>" + u.getNomu() + "</td><td>" + u.getPrenomu()+ "</td><td>" + u.getDatenaissanceu()+ "</td><td>" + u.getEmailu()+ "</td><td>" + u.getTelu()+ "</td><td>" + u.getObjectif()+ "</td>");
-                                                                            out.println("<td><span><a  href=\"GestionClient\" value=" + u.getCodeu() + ">Passer en attente</a></span></td>");
-                                                                            out.println("<td><span><a  href=\"GestionClient\" value=" + u.getCodeu() + ">Valider</a></span></td>");
-                                                                            out.println("<td><span><a  href=\"GestionClient\" value=" + u.getCodeu() + ">Informations</a></span></td>");
+                                                                            out.println("<td><a  href=\"GestionClient\" value=" + u.getCodeu() + ">Passer en attente</a></td>");
+                                                                            out.println("<td><a  href=\"GestionClient\" value=" + u.getCodeu() + ">Valider</a></td>");
+                                                                            out.println("<td><a  href=\"GestionClient\" value=" + u.getCodeu() + ">Informations</a></td>");
                                                                             out.println("<tr>");
                                                                         }
                                                                     %>    
@@ -112,7 +112,7 @@
                                                                         out.println("<tr><td>Nom</td><td>Prénom</td><td>Date de naissance</td><td>Adresse e-mail</td><td>Numéro de téléphone<td>Objectif</td></td></tr>");
                                                                         for(Utilisateur u : enattente) {
                                                                             out.println("<tr><td>" + u.getNomu() + "</td><td>" + u.getPrenomu()+ "</td><td>" + u.getDatenaissanceu()+ "</td><td>" + u.getEmailu()+ "</td><td>" + u.getTelu()+ "</td><td>" + u.getObjectif()+ "</td>");                
-                                                                            out.println("<td><span><a  href=\"GestionClient\" value=" + u.getCodeu() + ">Valider</a></span></td>");
+                                                                            out.println("<td><a  href=\"GestionClient\" value=" + u.getCodeu() + ">Valider</a></td>");
                                                                             out.println("<tr>");
                                                                         }
                                                                     %>    
