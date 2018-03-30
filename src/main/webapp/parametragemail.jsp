@@ -68,7 +68,7 @@
 			<header id="fh5co-header-section">
 				<div class="container">
 					<div class="nav-header">
-						<h1 id="fh5co-logo"><a href="connexion.jsp">JD<span>Connexion</span></a></h1>
+						<h1 id="fh5co-logo"><a href="connexion.jsp">JD<span>Coaching</span></a></h1>
 					</div>
 				</div>
 			</header>		
@@ -76,7 +76,7 @@
 		<!-- end:fh5co-header -->
 		<div class="fh5co-hero">
 			<div class="fh5co-overlay"></div>
-			<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/home-image.jpg);">
+			<div class="fh5co-cover" data-stellar-background-ratio="0.5">
 				<div class="desc animate-box">
 					<div class="container">
 						<div class="row">
